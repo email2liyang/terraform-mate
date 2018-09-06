@@ -118,13 +118,13 @@ locals {
     map("instance_type","m4.large",
       "additional_userdata","echo 'm4.large'",
       "subnets", "${join(",", module.vpc.public_subnets)}",
-      "asg_desired_capacity","3",
-      "asg_max_size","5",
-      "asg_min_size","1",
     ),
     map("instance_type","t2.small",
       "additional_userdata","echo 't2.small'",
-      "subnets", "${join(",", module.vpc.public_subnets)}"
+      "subnets", "${join(",", module.vpc.public_subnets)}",
+      "asg_desired_capacity","3",
+      "asg_max_size","5",
+      "asg_min_size","1",
     )
   )}"
 
