@@ -65,7 +65,7 @@ resource "aws_iam_user" "s3_repo_user_ro" {
 
 # generate keys for service account user
 resource "aws_iam_access_key" "s3_repo_user_keys_ro" {
-  user = "${aws_iam_user.s3_repo_user_rw.name}"
+  user = "${aws_iam_user.s3_repo_user_ro.name}"
 }
 
 # grant user access to the bucket
