@@ -22,3 +22,11 @@ module "vpc" {
     Environment = "dev"
   }
 }
+
+module "ssh_security_group" {
+  source = "terraform-aws-modules/security-group/aws//modules/ssh"
+
+  name   = "ssh_security_group"
+  vpc_id = "${module.vpc.vpc_id}"
+  ingress_cidr_blocks = ["0.0.0.0/0"]
+}
