@@ -30,3 +30,15 @@ module "ssh_security_group" {
   vpc_id = "${module.vpc.vpc_id}"
   ingress_cidr_blocks = ["0.0.0.0/0"]
 }
+
+resource "aws_instance" "vpc_work_node" {
+  ami           = "ami-00e17d1165b9dd3ec"
+  instance_type = "t2.micro"
+  key_name = "${var.key_name}"
+  subnet_id = "${element(module.vpc.public_subnets,0 )}"
+  vpc_security_group_ids = ["${module.vpc.default_security_group_id}","${module.ssh_security_group.this_security_group_id}"]
+  tags = {
+    Terraform   = "true"
+    Environment = "dev"
+  }
+}
