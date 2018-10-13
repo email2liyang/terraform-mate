@@ -50,3 +50,10 @@ resource "aws_instance" "vpc_worker_node" {
     Environment = "dev"
   }
 }
+
+module "vpc_standard_worker_node" {
+  source                 = "../../../modules/compute/ec2/vpc_standard_worker_node"
+  instance_count         = 2
+  subnet_id              = "${element(data.terraform_remote_state.vpc.vpc_public_subnets,0 )}"
+  vpc_security_group_ids = ["${data.terraform_remote_state.vpc.vpc_default_security_group_id}", "${data.terraform_remote_state.security_groups.ssh_security_group_id}"]
+}
