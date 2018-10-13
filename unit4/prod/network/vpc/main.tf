@@ -1,9 +1,10 @@
 # terraform.backend: configuration cannot contain interpolations
 terraform {
   backend "s3" {
-    bucket         = "terraform-mate"
-    key            = "unit4/prod/network/vpc.tfstate"
-    region         = "ap-southeast-2"
+    bucket = "terraform-mate"
+    key    = "unit4/prod/network/vpc.tfstate"
+    region = "ap-southeast-2"
+
     # The table must have a primary key named LockID
     dynamodb_table = "terraform_state_locker"
     profile        = "psn"

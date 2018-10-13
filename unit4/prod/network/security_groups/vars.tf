@@ -6,3 +6,7 @@ variable "profile" {
   description = "aws profile to use"
   default     = "psn"
 }
+
+variable "terraform_state_bucket" {
+  default = "terraform-mate"
+}
