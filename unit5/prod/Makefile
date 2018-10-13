@@ -26,9 +26,13 @@ ec2_destroy:
 	cd compute/ec2/ && \
 	terraform destroy -auto-approve
 
-destroy_all:
+security_groups_destroy: ec2_destroy
 	cd network/security_groups/ && \
-	terraform destroy -auto-approve && \
+	terraform destroy -auto-approve
+
+vpc_destroy: security_groups_destroy
 	cd network/vpc/ && \
 	terraform destroy -auto-approve
 
+destroy_all: vpc_destroy
+	echo 'destroy done'
