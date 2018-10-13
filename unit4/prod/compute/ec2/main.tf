@@ -38,7 +38,7 @@ data "terraform_remote_state" "security_groups" {
   }
 }
 
-resource "aws_instance" "vpc_work_node" {
+resource "aws_instance" "vpc_worker_node" {
   ami                    = "ami-00e17d1165b9dd3ec"
   instance_type          = "t2.micro"
   key_name               = "${var.key_name}"
