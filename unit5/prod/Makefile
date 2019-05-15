@@ -36,3 +36,7 @@ vpc_destroy: security_groups_destroy
 
 destroy_all: vpc_destroy
 	echo 'destroy done'
+
+encrypt:
+		cd compute/ec2/ && \
+		ansible-vault encrypt terraform.tfvars --output=terraform.tfvars.vault.test
