@@ -9,13 +9,13 @@ vpc_apply:
 	terraform plan -out=plan.bin && \
 	terraform apply -auto-approve plan.bin
 
-security_groups_apply:
+security_groups_apply: vpc_apply
 	cd network/security_groups/ && \
 	terraform init && \
 	terraform plan -out=plan.bin && \
 	terraform apply -auto-approve plan.bin
 
-ec2_apply:
+ec2_apply: security_groups_apply
 	cd compute/ec2/ && \
 	terraform init && \
 	ansible-vault decrypt terraform.tfvars.vault --output=terraform.tfvars && \
@@ -47,5 +47,3 @@ ansible_install_es:
 	cd compute/ec2/ && \
 	terraform state pull > terraform.tfstate && \
 	ansible-playbook --inventory-file=/usr/local/bin/terraform-inventory ansible/playbooks/ping.yaml
-
-
