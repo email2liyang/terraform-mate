@@ -8,6 +8,6 @@ variable "profile" {
 }
 
 variable "bucket_name" {
-  description = "The name of the S3 bucket. Must be globally unique."
+  description = "The name of the S3 bucket. Must be unique globally."
   default     = "corp-maven-repo"
 }
