@@ -1,5 +1,0 @@
-- hosts: server_elastic_search
-  become: false
-  tasks:
-    - name: Ping
-      ping:
